@@ -1,0 +1,136 @@
+{{define "base"}}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Character Encoding -->
+    <meta charset="UTF-8" />
+
+    <!-- Viewport Settings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Title (SEO Optimized) -->
+    <title>YardFinder - List & Find Garage Sales Near You</title>
+
+    <!-- Meta Description (SEO) -->
+    <meta 
+      name="description" 
+      content="Easily list and find yard sales & garage sales near you with YardFinder. Upload your sale details, generate a QR code, and attract more buyers!" 
+    />
+
+    <!-- Meta Keywords (SEO) -->
+    <meta 
+      name="keywords" 
+      content="yard sales, garage sales, estate sales, local yard sales, garage sale listings, yard sale finder, sell used items, QR code for garage sale, secondhand shopping" 
+    />
+
+    <!-- Author Metadata -->
+    <meta name="author" content="YardFinder Team" />
+
+    <!-- Robots Metadata -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yardfinder.com" />
+
+    <!-- Open Graph Metadata (Social Media Sharing) -->
+    <meta property="og:title" content="YardFinder - List & Find Garage Sales Near You" />
+    <meta 
+      property="og:description" 
+      content="Discover local yard sales or create your own listing with YardFinder. Generate a QR code for your sale and reach more buyers effortlessly!" 
+    />
+    <meta property="og:image" content="https://yardfinder.com/assets/og-image.jpg" />
+    <meta property="og:url" content="https://yardfinder.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="YardFinder - Find Yard & Garage Sales Near You" />
+    <meta 
+      name="twitter:description" 
+      content="Easily browse, list, and share yard sales & garage sales. Generate a QR code for your sale with YardFinder!" 
+    />
+    <meta name="twitter:image" content="https://yardfinder.com/assets/twitter-image.jpg" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap & CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/static/assets/css/templatemo-plot-listing.css">
+    <link rel="stylesheet" href="/static/assets/css/animated.css">
+    <link rel="stylesheet" href="/static/assets/css/owl.css">
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    
+    {{block "css" .}} {{ end }}
+</head>
+
+  <body>
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    {{block "content" .}} {{ end }}
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    
+    <!-- Scripts -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/assets/js/owl-carousel.js"></script>
+    <script src="/static/assets/js/animation.js"></script>
+    <script src="/static/assets/js/imagesloaded.js"></script>
+    <script src="/static/assets/js/custom.js"></script>
+
+    {{block "js" .}} {{ end }}
+    <script>
+      {{with .Error}}
+        Toastify({
+          text: "{{.}}",
+          duration: 3000,
+          gravity: "bottom",
+          position: "right",
+          stopOnFocus: true,
+          style: { background: "linear-gradient(to right, #B71C1C, #D32F2F)" },
+        }).showToast();
+      {{end}}
+
+      {{with .Flash}}
+        Toastify({
+          text: "{{.}}",
+          duration: 3000,
+          gravity: "bottom",
+          position: "right",
+          stopOnFocus: true,
+          style: { background: "linear-gradient(to right, #2E7D32, #4CAF50)" },
+        }).showToast();
+      {{end}}
+
+      {{with .Warning}}
+        Toastify({
+          text: "{{.}}",
+          duration: 3000,
+          gravity: "bottom",
+          position: "right",
+          stopOnFocus: true,
+          style: { background: "linear-gradient(to right, #E65100, #FB8C00)" },
+        }).showToast();
+      {{end}}
+    </script>
+  </body>
+</html>
+{{ end }}
