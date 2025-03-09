@@ -36,3 +36,8 @@ func NewHandlers(r *Repository) {
 func (m *Repository) Index(w http.ResponseWriter, r *http.Request) {
 	render.Template(w, r, "index.page.tmpl", &models.TemplateData{})
 }
+
+// GetCreateListing is create listing page handler for get requests
+func (m *Repository) GetCreateListing(w http.ResponseWriter, r *http.Request) {
+	render.Template(w, r, "create-listing.page.tmpl", &models.TemplateData{})
+}
