@@ -85,3 +85,13 @@ func (m *Repository) PostCreateListing(w http.ResponseWriter, r *http.Request) {
 	m.App.Session.Put(r.Context(), "flash", "Listing created successfully")
 	http.Redirect(w, r, "/create-listing", http.StatusSeeOther)
 }
+
+// GetConfirmListing is confirm listing page handler for get requests
+func (m *Repository) GetConfirmListing(w http.ResponseWriter, r *http.Request) {
+	render.Template(w, r, "confirm-listing.page.tmpl", &models.TemplateData{})
+}
+
+// GetViewListing is view listing page handler for get requests
+func (m *Repository) GetViewListing(w http.ResponseWriter, r *http.Request) {
+	render.Template(w, r, "view-listing.page.tmpl", &models.TemplateData{})
+}

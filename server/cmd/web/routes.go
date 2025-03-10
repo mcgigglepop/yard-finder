@@ -19,6 +19,8 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Get("/", handlers.Repo.Index)
 	mux.Get("/create-listing", handlers.Repo.GetCreateListing)
 	mux.Post("/create-listing", handlers.Repo.PostCreateListing)
+	mux.Get("/confirm-listing", handlers.Repo.GetConfirmListing)
+	mux.Get("/view-listing", handlers.Repo.GetViewListing)
 
 
 	fileServer := http.FileServer(http.Dir("./static/"))
