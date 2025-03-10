@@ -204,8 +204,9 @@
                         required
                       />
                     </fieldset>
+                    <div id="error-message" style="color: red; display: none;">test</div>
                   </div>
-                  <div class="col-lg-12">
+                  <div class="col-lg-12 mt-4">
                     <h6 class="mb-2">Sale Description <i class="fa fa-circle-exclamation" data-bs-toggle="tooltip" data-bs-placement="top" title="required"></i></h6>
                     <fieldset>
                       <textarea
@@ -365,6 +366,46 @@
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl);
     });
+  });
+</script>
+<script>
+  document.getElementById("contact").addEventListener("submit", async function (e) {
+    e.preventDefault(); // Stop default submission
+
+    const address = document.getElementById("addressone").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const zipcode = document.getElementById("zipcode").value;
+    const fullAddress = `${address}, ${city}, ${state} ${zipcode}, USA`;
+    const errorMessageDiv = document.getElementById("error-message");
+
+
+     // Clear previous error message
+    errorMessageDiv.style.display = "none";
+    errorMessageDiv.innerText = "";
+    
+
+    const apiKey = "";
+    const url = `https://addressvalidation.googleapis.com/v1:validateAddress?key=${apiKey}`;
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        address: { addressLines: [fullAddress] },
+        enableUspsCass: true // Improves standardization
+      }),
+    });
+
+    const data = await response.json();
+    if (data.result.verdict.hasUnconfirmedComponents || data.result.verdict.hasRejectedComponents) {
+      errorMessageDiv.innerText = "Invalid address! Please check your input.";
+      errorMessageDiv.style.display = "block";
+    } else {
+      alert("Valid address! Submitting...");
+      console.log(data)
+      // this.submit(); // Allow form submission
+    }
   });
 </script>
 {{ end }}
