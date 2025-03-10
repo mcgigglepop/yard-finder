@@ -18,6 +18,8 @@ func routes(app *config.AppConfig) http.Handler {
 
 	mux.Get("/", handlers.Repo.Index)
 	mux.Get("/create-listing", handlers.Repo.GetCreateListing)
+	mux.Post("/create-listing", handlers.Repo.PostCreateListing)
+
 
 	fileServer := http.FileServer(http.Dir("./static/"))
 	mux.Handle("/static/*", http.StripPrefix("/static", fileServer))
